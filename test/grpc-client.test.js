@@ -2,7 +2,7 @@
 
 const mock = require('egg-mock');
 
-describe('test/grpc-client.test.js', () => {
+describe('test/grpc-client.fairySister.js', () => {
   let app;
   before(() => {
     app = mock.app({
