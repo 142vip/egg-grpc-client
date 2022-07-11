@@ -1,14 +1,21 @@
 {
-  "name": "egg-grpc-client",
-  "version": "0.0.1",
+  "name": "@142vip/egg-grpc-client",
+  "version": "0.0.2",
   "description": "egg.js框架下grpc客户端插件，支持多客户端实例",
   "eggPlugin": {
     "name": "grpcClient"
   },
+  "main": "index.js",
+  "bin": {
+    "fairy": "index.js"
+  },
   "keywords": [
-    "egg",
-    "eggPlugin",
-    "egg-plugin"
+    "egg-grpc",
+    "egg.js",
+    "grpc",
+    "公众号：Rong姐姐好可爱",
+    "mmdapl",
+    "142vip"
   ],
   "dependencies": {
     "@grpc/grpc-js": "^1.6.7",
@@ -43,7 +50,6 @@
     "libs",
     "app.js",
     "agent.js",
-    "package.json"
   ],
   "ci": {
     "version": "8, 10"
@@ -56,6 +62,9 @@
     "url": "https://github.com/eggjs/egg/issues"
   },
   "homepage": "https://github.com/eggjs/egg-grpc-client#readme",
-  "author": "Rong姐姐好可爱",
-  "license": "MIT"
+  "author": "Rong姐姐好可爱 <fairy_vip@2925.com>",
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  }
 }
