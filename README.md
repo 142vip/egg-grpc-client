@@ -1,4 +1,4 @@
-# egg-grpc-client
+## egg-grpc-client
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -20,18 +20,25 @@
 [download-image]: https://img.shields.io/npm/dm/egg-grpc-client.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-grpc-client
 
-<!--
-Description here.
--->
 
-## Install
+### 支持的功能
+
+- [x] 支持单个grpc-server服务端连接实例
+- [x] 支持多个grpc-server服务端连接实例
+
+### 安装
 
 ```bash
-$ npm i egg-grpc-client --save
+## 安装最新版grpc-client插件
+npm i egg-grpc-client --save
+
+## 安装制定版本grpc-client插件
+npm i egg-grpc-client@xxx --save
 ```
 
-## Usage
+### 快速使用
 
+在plugin.js插件配置文件中配置egg-grpc-client
 ```js
 // {app_root}/config/plugin.js
 exports.grpcClient = {
@@ -40,24 +47,93 @@ exports.grpcClient = {
 };
 ```
 
-## Configuration
+### 默认配置
 
 ```js
 // {app_root}/config/config.default.js
 exports.grpcClient = {
+    // 默认配置，会填充到每个连接实例中
+    default: {
+        app: true,
+        agent: false,
+    },
+    // 支持单个grpc-server连接实例
+    client: {
+      protoDir: 'app/grpc',
+      serviceDir: 'app/grpc',
+      host: '127.0.0.1',
+      port: '50051',
+      loaderOptions: {
+        keepCase: true,
+        longs: String,
+        enums: String,
+        defaults: true,
+        oneofs: true,
+      },
+    },
+    // 支持多个grpc-server连接实例
+    clients: {
+      gprc_go: {
+        protoDir: 'app/grpc',
+        serviceDir: 'app/grpc',
+        host: '127.0.0.1',
+        port: '50051',
+        loaderOptions: {
+          keepCase: true,
+          longs: String,
+          enums: String,
+          defaults: true,
+          oneofs: true,
+        },
+      },
+      grpc_test: {
+        protoDir: 'app/grpc',
+        serviceDir: 'app/grpc',
+        host: '127.0.0.1',
+        port: '50051',
+        loaderOptions: {
+          keepCase: true,
+          longs: String,
+          enums: String,
+          defaults: true,
+          oneofs: true,
+        },
+      },
+    },
 };
 ```
 
-see [config/config.default.js](config/config.default.js) for more detail.
+更多默认配置，请查看[config/config.default.js](config/config.default.js)
 
-## Example
+### 使用示例
 
-<!-- example here -->
 
-## Questions & Suggestions
+完整grpc客户端、服务端插件使用示例，可以参考[142vip/egg-grpc-demo](https://github.com/142vip/egg-grpc-demo)
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+### 证书
 
-## License
+```text
+MIT License
 
-[MIT](LICENSE)
+Copyright (c) 2022 142vip FairySister Rong姐姐好可爱
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+```
