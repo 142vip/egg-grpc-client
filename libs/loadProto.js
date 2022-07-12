@@ -1,6 +1,5 @@
 'use strict';
 const fs = require('fs');
-const fse = require('fs-extra');
 const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
 const grpc = require('@grpc/grpc-js');
@@ -9,6 +8,7 @@ class loadProto {
   constructor(app) {
     this.app = app;
     this.config = app.config;
+    this.logger = app.coreLogger;
   }
 
   /**
@@ -16,10 +16,10 @@ class loadProto {
      * @param protoDir
      */
   async getProtoFileList(protoDir) {
-    try {
-      await fse.ensureDir(protoDir);
-    } catch (err) {
-      this.app.logger.error(`[egg-grpc-client] isn't dir: ${protoDir} `);
+
+    const fileStat = fs.statSync(protoDir);
+    if (!fileStat.isDirectory()) {
+      this.logger.error(`[egg-grpc-client] isn't dir: ${protoDir} `);
       return;
     }
     const filePathNameList = fs.readdirSync(protoDir);
@@ -33,14 +33,13 @@ class loadProto {
      * 获取grpc client实例
      * @param protoDir
      * @param config
-     * @return {Promise<{}>}
      */
   async getGrpcClient(protoDir, config) {
-    const { host, port, loadOption } = config;
+    const { host, port, loaderOptions } = config;
     const protoList = await this.getProtoFileList(protoDir);
     const grpcClient = {};
     for (const protoTargetPath of protoList) {
-      const packageDefinition = protoLoader.loadSync(protoTargetPath, loadOption);
+      const packageDefinition = protoLoader.loadSync(protoTargetPath, loaderOptions);
       const grpcObject = grpc.loadPackageDefinition(packageDefinition);
 
       // grpc对象遍历处理
@@ -48,9 +47,9 @@ class loadProto {
         for (const serviceClass of Object.values(packageObj)) {
           if (serviceClass.service != null) {
             const grpcClientInstance = new serviceClass(`${host}:${port}`, grpc.credentials.createInsecure());
-            console.log(Object.getOwnPropertyNames(grpcClientInstance.__proto__));
-            // 遍历方法
-            Object.getOwnPropertyNames(grpcClientInstance.__proto__).forEach(name => {
+            // console.log(Object.getOwnPropertyNames(serviceClass.prototype));
+            // 遍历方法 serviceClass.prototype 替换 grpcClientInstance.__proto__
+            Object.getOwnPropertyNames(serviceClass.prototype).forEach(name => {
               if (name !== 'constructor') {
                 grpcClient[name] = async requestData => await this.handleGrpcClientMethod(grpcClientInstance, name, requestData);
               }
@@ -82,7 +81,7 @@ class loadProto {
         if (err == null) {
           const { data } = result;
           if (data == null) {
-            app.logger.info('[egg-grpc-client] no key word data ,please check proto file');
+            app.logger.info('[egg-grpc-client] no key-word data in rpc message struct ,please check .proto file');
             return;
           }
           resolve(JSON.parse(data));
