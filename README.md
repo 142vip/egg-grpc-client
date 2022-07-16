@@ -30,10 +30,10 @@
 
 ```bash
 ## 安装最新版grpc-client插件
-npm i egg-grpc-client --save
+npm i @142vipegg-grpc-client --save
 
 ## 安装制定版本grpc-client插件
-npm i egg-grpc-client@xxx --save
+npm i @142vipegg-grpc-client@xxx --save
 ```
 
 ### 快速使用
@@ -43,7 +43,7 @@ npm i egg-grpc-client@xxx --save
 // {app_root}/config/plugin.js
 exports.grpcClient = {
   enable: true,
-  package: 'egg-grpc-client',
+  package: '@142vipegg-grpc-client',
 };
 ```
 
@@ -53,10 +53,8 @@ exports.grpcClient = {
 // {app_root}/config/config.default.js
 exports.grpcClient = {
     // 默认配置，会填充到每个连接实例中
-    default: {
-        app: true,
-        agent: false,
-    },
+    app: true,
+    agent: false,
     // 支持单个grpc-server连接实例
     client: {
       protoDir: 'app/grpc',

@@ -3,6 +3,6 @@
 module.exports = {
     grpcClient:{
         enable: true,
-        package: 'egg-grpc-client',
+        package: '@142vip/egg-grpc-client',
     }
 };
