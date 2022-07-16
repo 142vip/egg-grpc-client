@@ -105,6 +105,15 @@ exports.grpcClient = {
 
 ### 使用示例
 
+```js
+// 连接单个grpc server时
+
+ctx.grpcClient.xxx
+
+// 连接多个grpc server用例时
+ctx.grpcClient.get('xxx').xxxx
+
+```
 
 完整grpc客户端、服务端插件使用示例，可以参考[142vip/egg-grpc-demo](https://github.com/142vip/egg-grpc-demo)
 
