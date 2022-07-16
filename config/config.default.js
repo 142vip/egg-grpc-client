@@ -13,8 +13,6 @@
 
 /**
  * egg-grpc-client default config
- * @member Config#grpcClient
- * @property {String} SOME_KEY - some description
  */
 exports.grpcClient = {
   // protoDir: 'app/grpc',
@@ -42,34 +40,34 @@ exports.grpcClient = {
   //     oneofs: true,
   //   },
   // },
-  clients: {
-    grpc_go: {
-      protoDir: 'app/grpc',
-      serviceDir: 'app/grpc',
-      host: '127.0.0.1',
-      port: '50051',
-      loaderOptions: {
-        keepCase: true,
-        longs: String,
-        enums: String,
-        defaults: true,
-        oneofs: true,
-      },
-    },
-    grpc_test: {
-      protoDir: 'app/grpc',
-      serviceDir: 'app/grpc',
-      host: '127.0.0.1',
-      port: '50051',
-      loaderOptions: {
-        keepCase: true,
-        longs: String,
-        enums: String,
-        defaults: true,
-        oneofs: true,
-      },
-    },
-  },
+  // clients: {
+  //   grpc_go: {
+  //     protoDir: 'app/grpc',
+  //     serviceDir: 'app/grpc',
+  //     host: '127.0.0.1',
+  //     port: '50051',
+  //     loaderOptions: {
+  //       keepCase: true,
+  //       longs: String,
+  //       enums: String,
+  //       defaults: true,
+  //       oneofs: true,
+  //     },
+  //   },
+  //   grpc_test: {
+  //     protoDir: 'app/grpc',
+  //     serviceDir: 'app/grpc',
+  //     host: '127.0.0.1',
+  //     port: '50051',
+  //     loaderOptions: {
+  //       keepCase: true,
+  //       longs: String,
+  //       enums: String,
+  //       defaults: true,
+  //       oneofs: true,
+  //     },
+  //   },
+  // },
   app: true,
   agent: false,
 

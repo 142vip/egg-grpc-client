@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package VIP;
+
+// 服务 可以有多个 , 但约定为一个
+service FairySister {
+  rpc sayHello (RequestData) returns (ResponseData) {}
+  rpc healthCheck (RequestData) returns (ResponseData) {}
+}
+
+// grpc请求体结构 约定，无序改动
+message RequestData {
+  string data = 1;
+}
+
+// grpc响应体结构 约定，无序改动
+message ResponseData {
+  string data = 1;
+}
