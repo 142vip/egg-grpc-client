@@ -5,7 +5,6 @@
   "eggPlugin": {
     "name": "grpcClient"
   },
-  "main": "index.js",
   "keywords": [
     "公众号：Rong姐姐好可爱",
     "142vip",
