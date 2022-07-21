@@ -1,6 +1,6 @@
 {
   "name": "@142vip/egg-grpc-client",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "egg.js框架下grpc客户端插件，支持多客户端实例",
   "eggPlugin": {
     "name": "grpcClient"
