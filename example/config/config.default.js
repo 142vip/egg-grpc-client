@@ -1,13 +1,10 @@
 'use strict';
 module.exports = appInfo => {
-
-  const config = exports = {};
+  const config = (exports = {});
   config.keys = appInfo.name + '_142vip';
-  config.grpcClient={
-    default: {
-      app: true,
-      agent: false,
-    },
+  config.grpcClient = {
+    app: true,
+    agent: false,
     // 支持单个grpc-server连接实例
     client: {
       protoDir: 'app/grpc',
@@ -51,13 +48,12 @@ module.exports = appInfo => {
     //     },
     //   },
     // },
-  }
-
-  config.cluster={
-    listen:{
-      port:12306,
-      host:'0.0.0.0'
-    }
-  }
-  return config
+  };
+  config.cluster = {
+    listen: {
+      port: 12306,
+      host: '0.0.0.0',
+    },
+  };
+  return config;
 };
